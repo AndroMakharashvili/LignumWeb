@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Jim+Nightshade&family=MedievalSharp&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Stardos+Stencil:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, monospace;
+  --font-medieval: "MedievalSharp", cursive;
+  --font-cinzel: "Cinzel Decorative", serif;
+  --font-jim: "Jim Nightshade", cursive;
+  --font-stardos: "Stardos Stencil", serif;
+}
+
+@font-face {
+  font-family: 'BPG Nino Mtavruli';
+  src: url('/fonts/BPGNinoMtavruli-Bold.woff2') format('woff2'),
+    url('/fonts/BPGNinoMtavruli-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BPG Nino Mtavruli';
+  src: url('/fonts/BPGNinoMtavruli-Bold.woff2') format('woff2'),
+    url('/fonts/BPGNinoMtavruli-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-medieval {
+  font-family: "MedievalSharp", cursive !important;
+}
+
+.font-cinzel,
+.font-cinzel-decorative {
+  font-family: "Cinzel Decorative", serif !important;
+}
+
+.font-jim {
+  font-family: "Jim Nightshade", cursive !important;
+}
+
+.font-stardos {
+  font-family: "Stardos Stencil", serif !important;
+}
+
+/* Apply BPG Nino Mtavruli to all Georgian language text across the entire site */
+html.lang-ka,
+.lang-ka {
+  font-family: 'BPG Nino Mtavruli', "Inter", sans-serif;
+}
+
+html.lang-ka *:not(.font-medieval):not(.font-cinzel):not(.font-cinzel-decorative):not(.font-jim):not(.font-stardos):not(code):not(pre):not(svg):not(path),
+.lang-ka *:not(.font-medieval):not(.font-cinzel):not(.font-cinzel-decorative):not(.font-jim):not(.font-stardos):not(code):not(pre):not(svg):not(path) {
+  font-family: 'BPG Nino Mtavruli', "Inter", sans-serif;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #FAF5F0 25%, #D7B18E 50%, #FAF5F0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite linear;
+}
+
+/* Custom interactive effects */
+.hover-soft-lift {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-soft-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px -10px rgba(45, 37, 30, 0.15);
+}

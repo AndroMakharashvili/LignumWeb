@@ -1,0 +1,6 @@
+{
+  "name": "Lignum Wood Crafts Portfolio",
+  "description": "An exquisite hand-carved Georgian wild woodwork and custom grain-craft heirloom showroom catalog, featuring bespoke wood commissions, workshop stories, and artisan admin simulators.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
