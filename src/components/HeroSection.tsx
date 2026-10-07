@@ -8,7 +8,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ lang, setActiveTab }: HeroSectionProps) {
   return (
-    <section id="hero-section" className="relative min-h-[580px] md:min-h-[660px] flex items-center justify-center py-20 px-6 overflow-hidden text-center border-b border-[#D7B18E]/30 scroll-mt-20">
+    <section id="hero-section" className="relative min-h-[500px] sm:min-h-[580px] md:min-h-[660px] flex items-center justify-center py-12 sm:py-20 px-4 sm:px-6 overflow-hidden text-center border-b border-[#D7B18E]/30 scroll-mt-20">
 
       {/* Full background banner image with warm wood tone enrichment */}
       <div className="absolute inset-0 z-0">
@@ -42,10 +42,10 @@ export default function HeroSection({ lang, setActiveTab }: HeroSectionProps) {
       </div>
 
       {/* Main Center Content (matching screenshot) */}
-      <div className="relative z-10 max-w-3xl mx-auto space-y-6 text-center pt-2">
+      <div className="relative z-10 max-w-3xl mx-auto space-y-5 sm:space-y-6 text-center pt-2">
 
         {/* Big stylized LIGNUM Title */}
-        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[105px] font-stardos text-[#2B1810] font-bold tracking-[0.18em] uppercase select-none drop-shadow-2xs leading-none">
+        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[105px] font-stardos text-[#2B1810] font-bold tracking-[0.10em] sm:tracking-[0.18em] uppercase select-none drop-shadow-2xs leading-none">
           LIGNUM
         </h1>
 
