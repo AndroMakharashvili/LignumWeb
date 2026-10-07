@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Sparkles, MapPin, Mail, Phone, Facebook, Clock, MessageSquare, Send, CheckCircle2 } from 'lucide-react';
 
-interface ContactViewProps {
+interface ContactProps {
   lang: 'ka' | 'en';
 }
 
-export default function ContactView({ lang }: ContactViewProps) {
+export default function Contact({ lang }: ContactProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneOrSubject, setPhoneOrSubject] = useState('');
@@ -57,17 +57,17 @@ export default function ContactView({ lang }: ContactViewProps) {
   return (
     <div className="py-12 px-6 max-w-7xl mx-auto space-y-10">
       
-      {/* Top Header Text matching screenshot */}
+      {/* მთავარი სათაურის ტექსტი */}
       <div className="text-center space-y-3">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-extrabold text-[#3D2619] tracking-tight">
           {lang === 'ka' ? 'კონტაქტი' : 'Contact Us'}
         </h1>
       </div>
 
-      {/* Main 2-Column Grid Cards matching screenshot */}
+      {/* ძირითადი 2-სვეტიანი განლაგება */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-6xl mx-auto">
         
-        {/* Left Column Card: Contact Info (Instagram & YouTube excluded per request) */}
+        {/* მარცხენა სვეტი: საკონტაქტო ინფორმაცია */}
         <div className="lg:col-span-5 bg-[#F7F2EC] rounded-2xl border border-[#E5D7C5]/80 p-6 sm:p-8 space-y-6 shadow-sm">
           
           <div className="flex items-center gap-2 pb-2">
@@ -79,7 +79,7 @@ export default function ContactView({ lang }: ContactViewProps) {
 
           <div className="space-y-4">
             
-            {/* 1. Location */}
+            {/* 1. ლოკაცია */}
             <div className="flex items-center gap-4">
               <div className="h-11 w-11 rounded-xl bg-[#EFE9E0] text-[#3D2619] border border-[#E5D7C5]/70 flex items-center justify-center shrink-0">
                 <MapPin className="h-5 w-5" />
@@ -94,7 +94,7 @@ export default function ContactView({ lang }: ContactViewProps) {
               </div>
             </div>
 
-            {/* 2. Email */}
+            {/* 2. ელ-ფოსტა */}
             <div className="flex items-center gap-4">
               <div className="h-11 w-11 rounded-xl bg-[#EFE9E0] text-[#3D2619] border border-[#E5D7C5]/70 flex items-center justify-center shrink-0">
                 <Mail className="h-5 w-5" />
@@ -112,7 +112,7 @@ export default function ContactView({ lang }: ContactViewProps) {
               </div>
             </div>
 
-            {/* 3. Phone */}
+            {/* 3. ტელეფონი */}
             <div className="flex items-center gap-4">
               <div className="h-11 w-11 rounded-xl bg-[#EFE9E0] text-[#3D2619] border border-[#E5D7C5]/70 flex items-center justify-center shrink-0">
                 <Phone className="h-5 w-5" />
@@ -150,7 +150,7 @@ export default function ContactView({ lang }: ContactViewProps) {
               </div>
             </div>
 
-            {/* 5. Working Hours */}
+            {/* 5. სამუშაო საათები */}
             <div className="flex items-center gap-4">
               <div className="h-11 w-11 rounded-xl bg-[#EFE9E0] text-[#3D2619] border border-[#E5D7C5]/70 flex items-center justify-center shrink-0">
                 <Clock className="h-5 w-5" />
@@ -169,7 +169,7 @@ export default function ContactView({ lang }: ContactViewProps) {
 
         </div>
 
-        {/* Right Column Card: Contact Form matching screenshot */}
+        {/* მარჯვენა სვეტი: საკონტაქტო ფორმა */}
         <div className="lg:col-span-7 bg-[#F7F2EC] rounded-2xl border border-[#E5D7C5]/80 p-6 sm:p-8 space-y-6 shadow-sm">
           
           <div className="flex items-center gap-2.5 pb-2">
@@ -185,7 +185,7 @@ export default function ContactView({ lang }: ContactViewProps) {
             onSubmit={handleSubmit}
             className="space-y-5"
           >
-            {/* Inline Name and Email Fields */}
+            {/* სახელისა და ელ-ფოსტის ველები */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-xs font-sans font-bold text-[#3D2619] block">
@@ -218,7 +218,7 @@ export default function ContactView({ lang }: ContactViewProps) {
               </div>
             </div>
 
-            {/* Phone or Subject Field */}
+            {/* ტელეფონი ან სათაური ველი */}
             <div className="space-y-1.5">
               <label className="text-xs font-sans font-bold text-[#3D2619] block">
                 {lang === 'ka' ? 'ტელეფონი' : 'Phone'}
@@ -233,7 +233,7 @@ export default function ContactView({ lang }: ContactViewProps) {
               />
             </div>
 
-            {/* Message Textarea */}
+            {/* შეტყობინების ველი */}
             <div className="space-y-1.5">
               <label className="text-xs font-sans font-bold text-[#3D2619] block">
                 {lang === 'ka' ? 'თქვენი შეტყობინება' : 'Your Message'} <span className="text-rose-600">*</span>
@@ -249,7 +249,7 @@ export default function ContactView({ lang }: ContactViewProps) {
               />
             </div>
 
-            {/* Status alerts */}
+            {/* სტატუსის შეტყობინებები */}
             {success && (
               <div className="bg-emerald-50 border border-emerald-300 text-emerald-800 p-4 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 animate-fadeIn">
                 <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" />
@@ -269,7 +269,7 @@ export default function ContactView({ lang }: ContactViewProps) {
               </div>
             )}
 
-            {/* Submit Button */}
+            {/* გაგზავნის ღილაკი */}
             <button
               type="submit"
               disabled={submitting}

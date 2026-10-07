@@ -3,21 +3,21 @@ import { FileText, User, Mail, Phone, Send, CheckCircle2 } from 'lucide-react';
 import { TRANSLATIONS } from '../data';
 import { CustomOrderRequest } from '../types';
 
-interface CustomOrderEstimatorProps {
+interface OrderProps {
   lang: 'ka' | 'en';
   onAddCommission?: (request: CustomOrderRequest) => void;
 }
 
-export default function CustomOrderEstimator({ lang, onAddCommission }: CustomOrderEstimatorProps) {
+export default function Order({ lang, onAddCommission }: OrderProps) {
   const t = TRANSLATIONS[lang];
 
-  // Form states matching screenshot
+  // ფორმის მდგომარეობები
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
 
-  // Formspree submission states
+  // Formspree გაგზავნის მდგომარეობები
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
@@ -80,7 +80,7 @@ export default function CustomOrderEstimator({ lang, onAddCommission }: CustomOr
     <section id="custom-commission" className="py-16 px-6 bg-[#FAF5F0] border-b border-[#E5D7C5]/50 scroll-mt-20">
       <div className="max-w-4xl mx-auto space-y-8">
 
-        {/* Header Text Above the Form Card */}
+        {/* ზედა ტექსტი ფორმის ბარათის თავზე */}
         <div className="text-center space-y-3">
           <span className="text-xs uppercase tracking-widest text-[#8F9499] font-sans font-semibold block">
             {lang === 'ka' ? 'შეექმენი შენი იდეა' : 'Create Your Vision'}
@@ -90,10 +90,10 @@ export default function CustomOrderEstimator({ lang, onAddCommission }: CustomOr
           </h2>
         </div>
 
-        {/* Form Card Box matching user screenshot */}
+        {/* ფორმის მთავარი ბარათი */}
         <div className="max-w-3xl mx-auto bg-[#F7F2EC] rounded-2xl border border-[#E5D7C5]/80 p-6 sm:p-8 md:p-10 shadow-sm space-y-6">
 
-          {/* Title Header inside Card */}
+          {/* სათაური ბარათის შიგნით */}
           <div className="flex items-center gap-2.5 pb-4 border-b border-[#E5D7C5]/80">
             <FileText className="h-5 w-5 text-[#3D2619]" />
             <h3 className="font-serif font-extrabold text-[#3D2619] text-lg sm:text-xl">
@@ -101,14 +101,14 @@ export default function CustomOrderEstimator({ lang, onAddCommission }: CustomOr
             </h3>
           </div>
 
-          {/* Formspree React / AJAX Form */}
+          {/* Formspree ფორმა */}
           <form
             action="https://formspree.io/f/xzedpwjk"
             method="POST"
             onSubmit={handleSubmit}
             className="space-y-5"
           >
-            {/* Field 1: Full Name */}
+            {/* ველი 1: სახელი და გვარი */}
             <div className="space-y-1.5">
               <label className="text-xs font-sans font-bold text-[#3D2619] block">
                 {lang === 'ka' ? 'სახელი და გვარი' : 'Full Name'}
@@ -127,9 +127,9 @@ export default function CustomOrderEstimator({ lang, onAddCommission }: CustomOr
               </div>
             </div>
 
-            {/* Fields 2 & 3: Inline 2-Column Grid */}
+            {/* ველები 2 და 3: ორსვეტიანი განლაგება */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Field 2: Email */}
+              {/* ველი 2: ელ-ფოსტა */}
               <div className="space-y-1.5">
                 <label className="text-xs font-sans font-bold text-[#3D2619] block">
                   {lang === 'ka' ? 'ელ-ფოსტა' : 'Email'}
@@ -148,7 +148,7 @@ export default function CustomOrderEstimator({ lang, onAddCommission }: CustomOr
                 </div>
               </div>
 
-              {/* Field 3: Phone */}
+              {/* ველი 3: ტელეფონი */}
               <div className="space-y-1.5">
                 <label className="text-xs font-sans font-bold text-[#3D2619] block">
                   {lang === 'ka' ? 'ტელეფონის ნომერი' : 'Phone Number'}
@@ -167,7 +167,7 @@ export default function CustomOrderEstimator({ lang, onAddCommission }: CustomOr
               </div>
             </div>
 
-            {/* Field 4: Detailed Description */}
+            {/* ველი 4: დეტალური აღწერა */}
             <div className="space-y-1.5">
               <label className="text-xs font-sans font-bold text-[#3D2619] block">
                 {lang === 'ka' ? 'იდეის დეტალური აღწერა' : 'Detailed Idea Description'}
@@ -187,7 +187,7 @@ export default function CustomOrderEstimator({ lang, onAddCommission }: CustomOr
               />
             </div>
 
-            {/* Feedback Messages */}
+            {/* უკუკავშირის შეტყობინებები */}
             {success && (
               <div className="bg-emerald-50 border border-emerald-300 text-emerald-800 p-4 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 animate-fadeIn">
                 <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" />
@@ -207,7 +207,7 @@ export default function CustomOrderEstimator({ lang, onAddCommission }: CustomOr
               </div>
             )}
 
-            {/* Submit Button */}
+            {/* გაგზავნის ღილაკი */}
             <button
               type="submit"
               disabled={submitting}

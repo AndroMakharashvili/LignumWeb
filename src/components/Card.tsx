@@ -2,7 +2,7 @@ import React from 'react';
 import { Heart, Paperclip } from 'lucide-react';
 import { Artwork } from '../types';
 
-interface ArtworkCardProps {
+interface CardProps {
   artwork: Artwork;
   lang: 'ka' | 'en';
   isWishlisted: boolean;
@@ -10,14 +10,14 @@ interface ArtworkCardProps {
   onOpenDetails: (artwork: Artwork) => void;
 }
 
-const ArtworkCard: React.FC<ArtworkCardProps> = ({
+const Card: React.FC<CardProps> = ({
   artwork,
   lang,
   isWishlisted,
   onToggleWishlist,
   onOpenDetails,
 }) => {
-  // Localized strings
+  // ლოკალიზებული (თარგმნილი) ტექსტები
   const title = lang === 'en' && artwork.titleEn ? artwork.titleEn : artwork.title;
   const description = lang === 'en' && artwork.descriptionEn ? artwork.descriptionEn : artwork.description;
   const dimensions = lang === 'en' && artwork.dimensionsEn ? artwork.dimensionsEn : artwork.dimensions;
@@ -27,7 +27,7 @@ const ArtworkCard: React.FC<ArtworkCardProps> = ({
     ? materialsList.join(', ') 
     : (lang === 'ka' ? 'ხის დაფა' : 'Wood Board');
 
-  // Tag text on top-left of image
+  // ტეგი რომელიც სურათის ზედა მარცხენა კუთხეში ჩანს
   const displayTag = lang === 'en' && artwork.tagEn 
     ? artwork.tagEn 
     : (artwork.tag || artwork.category);
@@ -37,7 +37,7 @@ const ArtworkCard: React.FC<ArtworkCardProps> = ({
       onClick={() => onOpenDetails(artwork)}
       className="group bg-[#FAF5F0] rounded-2xl border border-[#E5D7C5]/70 overflow-hidden flex flex-col h-full cursor-pointer shadow-3xs transition-all duration-300 hover:shadow-md hover:border-[#D7B18E]"
     >
-      {/* Visual Thumbnail Frame (1:1 Aspect Ratio) */}
+      {/* სურათის ჩარჩო (1:1 პროპორციით) */}
       <div className="relative aspect-square overflow-hidden bg-[#EFEAE2]/60 shrink-0 flex items-center justify-center">
         <img
           src={artwork.image}
@@ -46,12 +46,12 @@ const ArtworkCard: React.FC<ArtworkCardProps> = ({
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
 
-        {/* Top-Left Category/Tag Pill Badge */}
+        {/* კატეგორიის/ტეგის პატარა წარწერა სურათზე მარცხნივ */}
         <div className="absolute top-3 left-3 bg-[#F6F0E8]/90 text-[#3D2619] text-[10px] font-semibold px-2.5 py-1 rounded-md border border-[#E5D7C5]/70 shadow-2xs backdrop-blur-xs">
           {displayTag}
         </div>
 
-        {/* Top-Right Wishlist Button Overlay */}
+        {/* რჩეულებში დამატების ღილაკი (გული) სურათზე მარჯვნივ */}
         <button
           onClick={(e) => onToggleWishlist(artwork.id, e)}
           className={`absolute top-3 right-3 h-8.5 w-8.5 rounded-lg flex items-center justify-center border transition-all shadow-2xs ${
@@ -64,7 +64,7 @@ const ArtworkCard: React.FC<ArtworkCardProps> = ({
           <Heart className={`h-4 w-4 ${isWishlisted ? 'fill-current' : ''}`} />
         </button>
 
-        {/* Out of Stock Banner Overlay */}
+        {/* "გაყიდულია" ბანერი თუ ნივთი მარაგში აღარ არის */}
         {artwork.stock === 0 && (
           <div className="absolute inset-0 bg-[#3D2619]/60 flex items-center justify-center backdrop-blur-xs">
             <span className="text-white uppercase font-mono text-xs tracking-widest border border-white/40 px-3 py-1.5 rounded-md">
@@ -74,10 +74,10 @@ const ArtworkCard: React.FC<ArtworkCardProps> = ({
         )}
       </div>
 
-      {/* Item metadata details */}
+      {/* ნივთის დეტალების ტექსტი სურათის ქვემოთ */}
       <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
         <div className="space-y-2">
-          {/* Title and Status Badge Row */}
+          {/* სათაურის და სტატუსის მწკრივი */}
           <div className="flex justify-between items-start gap-2">
             <h3 className="font-serif font-extrabold text-[#3D2619] text-xl group-hover:text-[#966842] transition-colors leading-tight">
               {title}
@@ -88,18 +88,18 @@ const ArtworkCard: React.FC<ArtworkCardProps> = ({
             </span>
           </div>
 
-          {/* Price Tag */}
+          {/* ფასი */}
           <div className="text-[#3D2619] font-extrabold text-base tracking-tight font-sans">
             {artwork.price || '0.00₾'}
           </div>
 
-          {/* Description snippet */}
+          {/* მოკლე აღწერა */}
           <p className="text-[#3D2619]/75 text-xs line-clamp-2 leading-relaxed font-sans">
             {description}
           </p>
         </div>
 
-        {/* Bottom Specs Row: Material & Dimensions with Paperclip Icon */}
+        {/* ქვედა მწკრივი: მასალა და ზომები */}
         <div className="pt-3 border-t border-[#E5D7C5]/60 flex items-center justify-between text-xs text-[#8F9499] font-sans">
           <span className="font-medium text-[#8F9499]">
             {woodMaterial}
@@ -115,4 +115,4 @@ const ArtworkCard: React.FC<ArtworkCardProps> = ({
   );
 };
 
-export default ArtworkCard;
+export default Card;

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Layers, Hammer, Sparkles, Flame } from 'lucide-react';
 
-interface ProcessSectionProps {
+interface ProcessProps {
   lang: 'ka' | 'en';
   t: any;
 }
 
-export default function ProcessSection({ lang }: ProcessSectionProps) {
+export default function Process({ lang }: ProcessProps) {
   const steps = [
     {
       number: '01',
@@ -46,7 +46,7 @@ export default function ProcessSection({ lang }: ProcessSectionProps) {
     <section id="process-section" className="bg-[#121110] text-[#FAF5F0] py-20 px-6 scroll-mt-20 border-b border-[#2A2622]">
       <div className="max-w-7xl mx-auto space-y-12">
         
-        {/* Header Text matching screenshot */}
+        {/* სათაურის ტექსტი */}
         <div className="text-center space-y-3">
           <span className="text-[11px] uppercase tracking-widest text-[#9A938C] font-mono font-bold block">
             {lang === 'ka' ? 'ხელზე კვეთის ეტაპები' : 'CARVING METHODOLOGY'}
@@ -56,7 +56,7 @@ export default function ProcessSection({ lang }: ProcessSectionProps) {
           </h2>
         </div>
 
-        {/* 4 Cards Grid matching screenshot */}
+        {/* 4 ბარათის ბადე (გრიდი) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((step) => {
             const IconComponent = step.icon;
@@ -65,7 +65,7 @@ export default function ProcessSection({ lang }: ProcessSectionProps) {
                 key={step.number}
                 className="bg-[#1A1816] rounded-2xl border border-[#2D2A26] p-6 sm:p-7 space-y-6 hover:border-[#D7B18E]/50 transition-all duration-300 shadow-lg group flex flex-col justify-between"
               >
-                {/* Top Row inside Card: Step Number & Icon */}
+                {/* ბარათის ზედა მწკრივი: ნაბიჯის ნომერი და ხატულა */}
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-4xl sm:text-5xl font-extrabold text-[#38332E] group-hover:text-[#D7B18E]/40 transition-colors">
                     {step.number}
@@ -75,7 +75,7 @@ export default function ProcessSection({ lang }: ProcessSectionProps) {
                   </div>
                 </div>
 
-                {/* Content inside Card */}
+                {/* ბარათის კონტენტი */}
                 <div className="space-y-2">
                   <h3 className="font-serif font-bold text-[#FAF5F0] text-xl group-hover:text-[#D7B18E] transition-colors">
                     {step.title}

@@ -1,18 +1,18 @@
 import React from 'react';
-import HeroSection from './HeroSection';
-import ProcessSection from './ProcessSection';
-import FaqSection from './FaqSection';
-import FeaturedSection from './FeaturedSection';
-import GalleryView from './GalleryView';
-import CustomOrderEstimator from './CustomOrderEstimator';
-import ContactView from './ContactView';
+import Hero from './Hero';
+import Process from './Process';
+import Faq from './Faq';
+import Featured from './Featured';
+import Gallery from './Gallery';
+import Order from './Order';
+import Contact from './Contact';
 import { useAppStore } from '../hooks/useAppStore';
 
-interface MainContentProps {
+interface MainProps {
   store: ReturnType<typeof useAppStore>;
 }
 
-export default function MainContent({ store }: MainContentProps) {
+export default function Main({ store }: MainProps) {
   const {
     lang,
     activeTab,
@@ -39,8 +39,8 @@ export default function MainContent({ store }: MainContentProps) {
     <main className="flex-1">
       {activeTab === 'Home' && (
         <div className="space-y-0">
-          <HeroSection lang={lang} setActiveTab={setActiveTab} />
-          <FeaturedSection
+          <Hero lang={lang} setActiveTab={setActiveTab} />
+          <Featured
             lang={lang}
             t={t}
             setActiveTab={setActiveTab}
@@ -51,17 +51,17 @@ export default function MainContent({ store }: MainContentProps) {
             onOpenDetails={handleOpenDetails}
           />
           <div id="commission-section">
-            <CustomOrderEstimator lang={lang} onAddCommission={handleAddCommission} />
+            <Order lang={lang} onAddCommission={handleAddCommission} />
           </div>
           <div id="process-section">
-            <ProcessSection lang={lang} t={t} />
+            <Process lang={lang} t={t} />
           </div>
-          <FaqSection lang={lang} />
+          <Faq lang={lang} />
         </div>
       )}
 
       {activeTab === 'Gallery' && (
-        <GalleryView
+        <Gallery
           lang={lang}
           t={t}
           searchQuery={searchQuery}
@@ -83,13 +83,13 @@ export default function MainContent({ store }: MainContentProps) {
 
       {activeTab === 'Commission' && (
         <div className="py-6">
-          <CustomOrderEstimator lang={lang} onAddCommission={handleAddCommission} />
+          <Order lang={lang} onAddCommission={handleAddCommission} />
         </div>
       )}
 
       {activeTab === 'Contact' && (
         <div className="py-6">
-          <ContactView lang={lang} />
+          <Contact lang={lang} />
         </div>
       )}
     </main>

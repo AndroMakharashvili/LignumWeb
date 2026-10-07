@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 
-interface FaqSectionProps {
+interface FaqProps {
   lang: 'ka' | 'en';
 }
 
@@ -44,7 +44,7 @@ const FAQ_DATA: FaqItem[] = [
   }
 ];
 
-export default function FaqSection({ lang }: FaqSectionProps) {
+export default function Faq({ lang }: FaqProps) {
   const [openId, setOpenId] = useState<string | null>('faq-1');
 
   const toggleItem = (id: string) => {
@@ -55,7 +55,7 @@ export default function FaqSection({ lang }: FaqSectionProps) {
     <section id="faq-section" className="py-20 px-6 bg-[#FAF5F0] border-b border-[#D7B18E]/30 scroll-mt-20">
       <div className="max-w-4xl mx-auto space-y-10">
         
-        {/* Section Header */}
+        {/* სექციის სათაური */}
         <div className="text-center space-y-3">
           <span className="text-[11px] uppercase tracking-widest text-[#966842] font-mono font-extrabold block">
             {lang === 'ka' ? 'ხშირად დასმული კითხვები' : 'FREQUENTLY ASKED QUESTIONS'}
@@ -65,7 +65,7 @@ export default function FaqSection({ lang }: FaqSectionProps) {
           </h2>
         </div>
 
-        {/* FAQ Accordion List */}
+        {/* კითხვების სია (Accordion) */}
         <div className="space-y-4">
           {FAQ_DATA.map((item) => {
             const isOpen = openId === item.id;

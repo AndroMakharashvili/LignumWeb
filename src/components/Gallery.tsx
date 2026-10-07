@@ -1,10 +1,10 @@
 import React from 'react';
 import { Search } from 'lucide-react';
 import { Artwork } from '../types';
-import ArtworkCard from './ArtworkCard';
-import SkeletonCard from './SkeletonCard';
+import Card from './Card';
+import Skeleton from './Skeleton';
 
-interface GalleryViewProps {
+interface GalleryProps {
   lang: 'ka' | 'en';
   t: any;
   searchQuery: string;
@@ -23,7 +23,7 @@ interface GalleryViewProps {
   setActiveTab: (tab: 'Home' | 'Gallery' | 'Commission' | 'Contact') => void;
 }
 
-export default function GalleryView({
+export default function Gallery({
   lang,
   t,
   searchQuery,
@@ -40,7 +40,7 @@ export default function GalleryView({
   onToggleWishlist,
   onOpenDetails,
   setActiveTab
-}: GalleryViewProps) {
+}: GalleryProps) {
 
   const categoryOptions = [
     { key: 'All', label: lang === 'ka' ? 'ყველა ნამუშევარი' : 'All Crafts' },
@@ -51,10 +51,10 @@ export default function GalleryView({
   return (
     <div className="py-10 px-6 max-w-7xl mx-auto space-y-8">
       
-      {/* Top Controls Bar matching screenshot */}
+      {/* ზედა სამართავი პანელი */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         
-        {/* Category Buttons Row */}
+        {/* კატეგორიების ღილაკები */}
         <div className="flex flex-wrap items-center gap-2.5">
           {categoryOptions.map((cat) => {
             const isSelected = selectedCategory === cat.key;
@@ -74,7 +74,7 @@ export default function GalleryView({
           })}
         </div>
 
-        {/* Search Input on right side matching screenshot */}
+        {/* ძიების ველი მარჯვენა მხარეს */}
         <div className="relative w-full md:w-72 shrink-0">
           <input
             type="text"
@@ -94,10 +94,10 @@ export default function GalleryView({
         </div>
       </div>
 
-      {/* Gallery Items Grid */}
+      {/* გალერეის ნივთების ბადე */}
       {pageLoading || gridLoading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <SkeletonCard count={6} />
+          <Skeleton count={6} />
         </div>
       ) : filteredArtworks.length === 0 ? (
         <div className="text-center py-24 bg-[#FAF5F0] rounded-2xl border border-[#E5D7C5]/60 space-y-3 shadow-3xs">
@@ -112,7 +112,7 @@ export default function GalleryView({
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredArtworks.map((item) => (
-            <ArtworkCard
+            <Card
               key={item.id}
               artwork={item}
               lang={lang}

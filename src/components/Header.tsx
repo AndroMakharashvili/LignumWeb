@@ -29,7 +29,7 @@ export default function Header({
     <header className="sticky top-0 z-40 bg-[#FAF5F0]/90 backdrop-blur-md border-b border-[#D7B18E]/40 py-3 px-4 sm:px-6 shrink-0 shadow-2xs">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
 
-        {/* Logo / Title brand */}
+        {/* ლოგო / ბრენდის სახელი */}
         <div
           onClick={() => {
             setMobileMenuOpen(false);
@@ -47,10 +47,10 @@ export default function Header({
           </div>
         </div>
 
-        {/* Desktop Nav Tab switches */}
+        {/* მთავარი მენიუს ღილაკები კომპიუტერისთვის */}
         <nav className="hidden md:flex items-center gap-4 lg:gap-7 text-sm lg:text-base font-semibold text-[#3D2619]/80">
 
-          {/* Home Tab */}
+          {/* მთავარი გვერდი */}
           <button
             onClick={() => {
               setActiveTab('Home');
@@ -65,7 +65,7 @@ export default function Header({
             )}
           </button>
 
-          {/* Gallery Tab */}
+          {/* გალერეა */}
           <button
             onClick={() => {
               setActiveTab('Gallery');
@@ -80,7 +80,7 @@ export default function Header({
             )}
           </button>
 
-          {/* Commission Tab */}
+          {/* შეკვეთა */}
           <button
             onClick={() => setActiveTab('Commission')}
             className={`py-1 relative transition-colors hover:text-[#3D2619] cursor-pointer ${activeTab === 'Commission' ? 'text-[#3D2619] font-extrabold' : ''
@@ -92,7 +92,7 @@ export default function Header({
             )}
           </button>
 
-          {/* Contact Tab */}
+          {/* კონტაქტი */}
           <button
             onClick={() => setActiveTab('Contact')}
             className={`py-1 relative transition-colors hover:text-[#3D2619] cursor-pointer ${activeTab === 'Contact' ? 'text-[#3D2619] font-extrabold' : ''
@@ -104,7 +104,7 @@ export default function Header({
             )}
           </button>
 
-          {/* Process scroll link */}
+          {/* პროცესის სექციაზე გადასვლა */}
           <button
             onClick={() => {
               setActiveTab('Home');
@@ -117,7 +117,7 @@ export default function Header({
             <span>{lang === 'ka' ? 'პროცესი' : 'Process'}</span>
           </button>
 
-          {/* FAQ Questions scroll link */}
+          {/* ხშირად დასმული კითხვების სექციაზე გადასვლა */}
           <button
             onClick={() => {
               setActiveTab('Home');
@@ -131,9 +131,9 @@ export default function Header({
           </button>
         </nav>
 
-        {/* Right Header Buttons */}
+        {/* ჰედერის მარჯვენა ღილაკები */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Language Switch button */}
+          {/* ენის შეცვლის ღილაკი */}
           <button
             onClick={toggleLanguage}
             className="h-8.5 sm:h-9 px-2.5 sm:px-3.5 rounded-lg bg-white/70 hover:bg-white text-[#3D2619] border border-[#D7B18E]/40 text-xs sm:text-sm font-semibold transition-all uppercase flex items-center gap-1.5 cursor-pointer shadow-3xs"
@@ -141,7 +141,7 @@ export default function Header({
             <span>{lang === 'ka' ? 'EN' : 'KA'}</span>
           </button>
 
-          {/* Order / Commission main dark brown button on desktop */}
+          {/* შეკვეთის მთავარი ღილაკი კომპიუტერისთვის */}
           <button
             onClick={() => setActiveTab('Commission')}
             className="hidden sm:flex h-9.5 px-4 rounded-lg bg-[#3D2619] hover:bg-[#2A1910] text-[#FAF5F0] font-bold text-xs sm:text-sm uppercase tracking-wider items-center gap-2 shadow-sm transition-all cursor-pointer"
@@ -149,11 +149,11 @@ export default function Header({
             <span>{lang === 'ka' ? 'შეკვეთა' : 'Order'}</span>
           </button>
 
-          {/* Mobile Hamburger Menu Toggle Button */}
+          {/* მობილურის მენიუს გასახსნელი ღილაკი */}
           <button
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             className="md:hidden h-9 w-9 rounded-lg bg-white/70 hover:bg-white text-[#3D2619] border border-[#D7B18E]/40 flex items-center justify-center cursor-pointer shadow-3xs"
-            aria-label="Toggle Navigation Menu"
+            aria-label="მენიუს გახსნა"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -161,7 +161,7 @@ export default function Header({
 
       </div>
 
-      {/* Mobile Navigation Drawer Overlay */}
+      {/* მობილურის მენიუს ჩამონათვალი */}
       {mobileMenuOpen && (
         <div className="md:hidden pt-3 pb-4 px-2 border-t border-[#D7B18E]/30 mt-3 animate-fadeIn space-y-1.5 font-sans bg-[#FAF5F0]">
           <button

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 
-interface ScrollToTopProps {
+interface ScrollTopProps {
   lang?: 'ka' | 'en';
 }
 
-export default function ScrollToTop({ lang = 'ka' }: ScrollToTopProps) {
+export default function ScrollTop({ lang = 'ka' }: ScrollTopProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // სქროლის მოსმენა ღილაკის გამოსაჩენად
     const toggleVisibility = () => {
       if (window.scrollY > 300) {
         setIsVisible(true);

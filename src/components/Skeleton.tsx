@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface SkeletonCardProps {
+interface SkeletonProps {
   count?: number;
 }
 
-export default function SkeletonCard({ count = 3 }: SkeletonCardProps) {
+export default function Skeleton({ count = 3 }: SkeletonProps) {
   return (
     <>
       {Array.from({ length: count }).map((_, idx) => (

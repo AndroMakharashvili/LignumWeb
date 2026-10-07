@@ -3,7 +3,7 @@ import { X, Heart, Calendar, ShoppingBag, Check } from 'lucide-react';
 import { Artwork } from '../types';
 import { TRANSLATIONS } from '../data';
 
-interface ArtworkDetailModalProps {
+interface ModalProps {
   artwork: Artwork;
   lang: 'ka' | 'en';
   onClose: () => void;
@@ -14,7 +14,7 @@ interface ArtworkDetailModalProps {
   setActiveTab?: (tab: 'Home' | 'Gallery' | 'Commission' | 'Contact') => void;
 }
 
-export default function ArtworkDetailModal({
+export default function Modal({
   artwork,
   lang,
   onClose,
@@ -23,16 +23,16 @@ export default function ArtworkDetailModal({
   allArtworks,
   onSelectArtwork,
   setActiveTab,
-}: ArtworkDetailModalProps) {
+}: ModalProps) {
   const t = TRANSLATIONS[lang];
   const [showInquirySent, setShowInquirySent] = useState(false);
   const [inquiryText, setInquiryText] = useState('');
   const [showInquiryForm, setShowInquiryForm] = useState(false);
 
-  // Extract year of creation from createdAt or default
+  // შექმნის წლის ამოღება ან ნაგულისხმევი 2025 წლის მინიჭება
   const createdYear = artwork.createdAt ? artwork.createdAt.split('-')[0] : '2025';
 
-  // Localized strings
+  // ლოკალიზებული (თარგმნილი) ტექსტები
   const title = lang === 'en' && artwork.titleEn ? artwork.titleEn : artwork.title;
   const description = lang === 'en' && artwork.descriptionEn ? artwork.descriptionEn : artwork.description;
   const dimensions = lang === 'en' && artwork.dimensionsEn ? artwork.dimensionsEn : artwork.dimensions;
@@ -42,7 +42,7 @@ export default function ArtworkDetailModal({
     ? materialsList.join(', ') 
     : (lang === 'ka' ? 'გარგარის ხე' : 'Wild Wood');
 
-  // Category subtitle formatting
+  // კატეგორიის ტექსტის ფორმატირება
   const categorySubtitle = () => {
     if (lang === 'en' && artwork.tagEn) {
       return artwork.tagEn.toUpperCase();
@@ -65,7 +65,7 @@ export default function ArtworkDetailModal({
         className="bg-[#FAF5F0] rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl border border-[#D7B18E]/30 relative animate-fadeIn my-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button on top right */}
+        {/* დახურვის ღილაკი ზედა მარჯვენა კუთხეში */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-30 bg-white/90 hover:bg-white text-[#3D2619] h-9 w-9 rounded-lg flex items-center justify-center border border-[#D7B18E]/40 shadow-xs transition-all cursor-pointer"
@@ -74,10 +74,10 @@ export default function ArtworkDetailModal({
           <X className="h-5 w-5" />
         </button>
 
-        {/* Modal Main Content Grid */}
+        {/* მოდალურის მთავარი კონტენტის ბადე (2 სვეტად) */}
         <div className="grid grid-cols-1 md:grid-cols-2">
           
-          {/* Left Column: Product Image */}
+          {/* მარცხენა სვეტი: პროდუქტის სურათი */}
           <div className="relative min-h-[320px] md:min-h-[460px] bg-white flex items-center justify-center overflow-hidden border-b md:border-b-0 md:border-r border-[#D7B18E]/20">
             <img
               src={artwork.image}
@@ -86,7 +86,7 @@ export default function ArtworkDetailModal({
               className="w-full h-full object-cover"
             />
 
-            {/* Wishlist Button Overlay */}
+            {/* რჩეულებში დამატების ღილაკი */}
             <button
               onClick={(e) => onToggleWishlist(artwork.id, e)}
               className={`absolute top-4 left-4 z-20 h-9 w-9 rounded-full flex items-center justify-center border transition-all shadow-sm ${
@@ -99,7 +99,7 @@ export default function ArtworkDetailModal({
               <Heart className={`h-4 w-4 ${isWishlisted ? 'fill-current' : ''}`} />
             </button>
 
-            {/* Out of Stock banner overlay if applicable */}
+            {/* გაყიდულია ბანერი თუ მარაგში აღარ არის */}
             {artwork.stock === 0 && (
               <div className="absolute inset-0 bg-[#3D2619]/60 flex items-center justify-center backdrop-blur-xs">
                 <span className="text-white text-xs font-mono tracking-widest border border-white/50 px-4 py-2 rounded-xs uppercase">
@@ -109,27 +109,27 @@ export default function ArtworkDetailModal({
             )}
           </div>
 
-          {/* Right Column: Details & Actions */}
+          {/* მარჯვენა სვეტი: დეტალები და ღილაკები */}
           <div className="p-6 md:p-8 flex flex-col justify-between space-y-4">
             
-            {/* Top Product Information */}
+            {/* პროდუქტის ძირითადი ინფორმაცია */}
             <div className="space-y-3">
-              {/* Category / Subtitle tag */}
+              {/* კატეგორია / ქვე-სათაური */}
               <span className="text-xs font-mono uppercase tracking-wider text-[#8F9499] font-bold block">
                 {categorySubtitle()}
               </span>
 
-              {/* Product Title */}
+              {/* პროდუქტის დასახელება */}
               <h2 className="text-2xl md:text-3xl font-serif font-extrabold text-[#3D2619] leading-snug tracking-tight">
                 {title}
               </h2>
 
-              {/* Price Tag */}
+              {/* ფასი */}
               <div className="text-2xl font-extrabold text-[#3D2619] font-sans tracking-tight pt-0.5">
                 {artwork.price || '0.00₾'}
               </div>
 
-              {/* Badges Row */}
+              {/* სტატუსის მწკრივი */}
               <div className="flex flex-wrap items-center gap-2 pt-1">
                 <span className={`text-xs font-bold px-3 py-1 rounded-md ${
                   artwork.stock > 0
@@ -146,12 +146,12 @@ export default function ArtworkDetailModal({
                 </span>
               </div>
 
-              {/* Description */}
+              {/* აღწერა */}
               <p className="text-sm text-[#3D2619]/85 leading-relaxed font-sans pt-2">
                 {description}
               </p>
 
-              {/* Technical Specifications Box matching screenshot */}
+              {/* ტექნიკური მახასიათებლები */}
               <div className="bg-[#F6F0E8] border border-[#E5D7C5] rounded-xl p-4 space-y-2.5 text-xs text-[#3D2619] font-sans my-4">
                 <div className="flex justify-between items-center pb-2 border-b border-[#E5D7C5]/70">
                   <span className="text-[#8F9499] font-medium">
@@ -183,7 +183,7 @@ export default function ArtworkDetailModal({
               </div>
             </div>
 
-            {/* Bottom Action Area */}
+            {/* ქვედა ღილაკების არეალი */}
             <div className="space-y-3 pt-2">
               <button
                 onClick={() => {

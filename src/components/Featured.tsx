@@ -1,10 +1,10 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Artwork } from '../types';
-import ArtworkCard from './ArtworkCard';
-import SkeletonCard from './SkeletonCard';
+import Card from './Card';
+import Skeleton from './Skeleton';
 
-interface FeaturedSectionProps {
+interface FeaturedProps {
   lang: 'ka' | 'en';
   t: any;
   setActiveTab: (tab: 'Home' | 'Gallery' | 'Commission' | 'Contact') => void;
@@ -15,7 +15,7 @@ interface FeaturedSectionProps {
   onOpenDetails: (artwork: Artwork) => void;
 }
 
-export default function FeaturedSection({
+export default function Featured({
   lang,
   t,
   setActiveTab,
@@ -24,7 +24,7 @@ export default function FeaturedSection({
   wishlist,
   onToggleWishlist,
   onOpenDetails
-}: FeaturedSectionProps) {
+}: FeaturedProps) {
   return (
     <section className="py-16 px-6 max-w-7xl mx-auto space-y-8">
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 border-b border-[#D7B18E]/30 pb-5">
@@ -47,10 +47,10 @@ export default function FeaturedSection({
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {pageLoading ? (
-          <SkeletonCard count={3} />
+          <Skeleton count={3} />
         ) : (
           featuredArtworks.map((item) => (
-            <ArtworkCard
+            <Card
               key={item.id}
               artwork={item}
               lang={lang}

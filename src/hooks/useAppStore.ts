@@ -3,27 +3,27 @@ import { INITIAL_ARTWORKS, TRANSLATIONS } from '../data';
 import { Artwork, CustomOrderRequest } from '../types';
 
 export function useAppStore() {
-  // --- Core States ---
+  // --- ძირითადი მდგომარეობები ---
   const [lang, setLang] = useState<'ka' | 'en'>('ka');
   const [activeTab, setActiveTab] = useState<'Home' | 'Gallery' | 'Commission' | 'Contact'>('Home');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<'price-asc' | 'price-desc' | 'views' | 'latest'>('latest');
   
-  // Loading States
+  // ჩატვირთვის მდგომარეობები
   const [pageLoading, setPageLoading] = useState<boolean>(true);
   const [gridLoading, setGridLoading] = useState<boolean>(false);
   
-  // Persistence States
+  // შენახვის მდგომარეობები (მონაცემები)
   const [artworks, setArtworks] = useState<Artwork[]>([]);
   const [commissions, setCommissions] = useState<CustomOrderRequest[]>([]);
   const [wishlist, setWishlist] = useState<string[]>([]);
   
-  // Modal Feedback States
+  // მოდალურის უკუკავშირის მდგომარეობები
   const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null);
   const [orderFinalSuccess, setOrderFinalSuccess] = useState<boolean>(false);
 
-  // Sync language font class to document root
+  // ენის ფონტის კლასის სინქრონიზაცია დოკუმენტის root-თან
   useEffect(() => {
     if (lang === 'ka') {
       document.documentElement.classList.add('lang-ka');
@@ -34,23 +34,23 @@ export function useAppStore() {
     }
   }, [lang]);
 
-  // Scroll to top whenever activeTab changes
+  // გვერდის ზედა ნაწილში ასვლა როდესაც აქტიური ტაბი იცვლება
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeTab]);
 
-  // Initial setup
+  // საწყისი კონფიგურაცია
   useEffect(() => {
     const loaderTimer = setTimeout(() => setPageLoading(false), 900);
 
-    // Always use INITIAL_ARTWORKS from data.ts as source of truth
+    // მუდმივად ვიყენებთ INITIAL_ARTWORKS-ს data.ts-დან
     setArtworks(INITIAL_ARTWORKS);
     try {
       localStorage.removeItem('artisanal_artworks');
       localStorage.removeItem('artisanal_artworks_v2');
       localStorage.removeItem('artisanal_artworks_v3');
     } catch {
-      // ignore
+      // შეცდომის იგნორირება
     }
 
     const savedCommissions = localStorage.getItem('artisanal_commissions');
@@ -66,7 +66,7 @@ export function useAppStore() {
     return () => clearTimeout(loaderTimer);
   }, []);
 
-  // Helpers for Persistence
+  // დამხმარე ფუნქციები მონაცემების შენახვისთვის
   const saveArtworksToLocal = (updatedList: Artwork[]) => {
     setArtworks(updatedList);
     localStorage.setItem('artisanal_artworks', JSON.stringify(updatedList));
@@ -82,7 +82,7 @@ export function useAppStore() {
     localStorage.setItem('artisanal_wishlist', JSON.stringify(updatedWl));
   };
 
-  // Handlers
+  // ჰენდლერები (დამმუშავებლები)
   const toggleLanguage = () => setLang((prev) => (prev === 'ka' ? 'en' : 'ka'));
 
   const handleAddArtwork = (newArtData: Omit<Artwork, 'createdAt'>) => {
@@ -134,7 +134,7 @@ export function useAppStore() {
     setTimeout(() => setGridLoading(false), 400);
   };
 
-  // Derived Values
+  // გამოთვლილი მნიშვნელობები
   const filteredArtworks = artworks
     .filter((item) => {
       const matchesCategory = selectedCategory === 'All' || item.category === selectedCategory;
