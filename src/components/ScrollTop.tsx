@@ -36,7 +36,7 @@ export default function ScrollTop({ lang = 'ka' }: ScrollTopProps) {
       onClick={scrollToTop}
       aria-label={lang === 'ka' ? 'ზემოთ ასვლა' : 'Scroll to top'}
       title={lang === 'ka' ? 'ზემოთ ასვლა' : 'Scroll to top'}
-      className="fixed bottom-6 right-6 z-40 h-11 w-11 rounded-full bg-[#3D2619] hover:bg-[#2A1910] text-[#FAF5F0] border border-[#D7B18E]/50 shadow-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 animate-fadeIn"
+      className="fixed bottom-24 right-6 z-40 h-11 w-11 rounded-full bg-[#3D2619] hover:bg-[#2A1910] text-[#FAF5F0] border border-[#D7B18E]/50 shadow-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 animate-fadeIn"
     >
       <ArrowUp className="h-5 w-5 text-[#D7B18E]" />
     </button>
